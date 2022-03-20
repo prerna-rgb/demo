@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<title>calc</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+h1{
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  cursor: context-menu;
+}
+.container{  
+  width: 80%;
+  margin: auto;
+  height: auto;
+  padding-bottom: 50px;
+  padding-top: 30px;
+  border: 2px solid #000;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+label{
+   font-family: 'Poppins', sans-serif;
+   font-weight: 500;
+   margin-left: 20px;
+}
+#all{
+   font-family: 'Poppins', sans-serif;
+   font-weight: 500;  
+   margin-left: 20px;
+   margin-top: 20px;
+   padding: 10px 30px;
+   cursor: pointer;
+   background-color: rgb(44, 107, 206);
+   border: none;
+   color: #fff;
+  font-size: 17px;
+}
+#cost,#tax,select{
+  width: 20%;
+  height: 5vh;
+  margin-left: 20px;
+  font-size: 17px;
+  border: 2px solid #000;
+}
+h2{
+  float: right;
+  margin-right: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+#tablez {
+  font-family: 'Poppins', sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+  text-transform: capitalize;
+}
+
+#tablez td, #tablez th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+
+#tablez tr:hover {background-color: #ddd;}
+
+#tablez th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(44, 107, 206);;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<h1>sales tax calculator</h1>
+
+<div class="container">
+  <form action="#" method="get">
+    <label for="prd">Product:</label>
+  	<select id= "prid" name="Selection" onchange="check()">
+      <option value="select">select a category</option> 
+      <option value="book">book</option> 
+      <option value="food">food</option>
+      <option value="medical">medical</option> 
+      <option value="import">import</option>
+      <option value="others">others</option>
+  	</select>
+    <br><br>
+    <label for="lname">Cost:</label>
+    <input type="text" id="cost" name="cost"><br><br>
+    <label for="txa">tax:</label>
+    <input type="text" id="tax" name="tax" readonly><br><br>
+    <input type="submit" onclick="main()" value="Add" id="all" >
+  </form>
+
+<h2>total cost = <span id="total"></span> </h2>
+
+<table id="tablez">
+  <tbody>
+    <thead>
+      <tr>
+        <th>product</th>
+        <th>cost</th>
+        <th>tax</th>
+      </tr>
+    </thead>
+  <tbody>
+</table>
+</div>
+
+<script>
+function main() {
+  var a = $("#prid").val();
+  var b = parseFloat ( $("#cost").val());
+  var c = parseFloat ( $("#tax").val());
+  $("#tablez tbody").append("<tr><td>" + a + "</td><td>" + b + "</td><td>" + c + "</td></tr>");
+
+
+ var d = parseFloat (document.getElementById('cost').value);
+ var e = parseFloat (document.getElementById('tax').value);
+ var f = d * e;
+ var g = parseFloat (document.getElementById("total").innerHTML = f + d);
+
+}
+
+function check() {
+ var g = document.getElementById('prid').value;
+ if(g=='import') {
+  document.getElementById('tax').value = "0.05";
+ }
+ else if(g=='others') {
+  document.getElementById('tax').value = "0.1";
+ }else {
+  document.getElementById('tax').value = "1";
+ }
+}
+</script>
+
+
+
+</body>
+</html>
